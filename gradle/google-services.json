@@ -1,0 +1,71 @@
+{
+  "project_info": {
+    "project_number": "706828240078",
+    "project_id": "cvdicrisiseye"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:706828240078:android:af98eaa9d77b0dc2",
+        "android_client_info": {
+          "package_name": "com.trial.cvdi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "706828240078-1imfpfrc81278q20aue7k6q1qasgfk92.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCncTZfTatpkt9aiLiaXthS2v1kPOgEzU8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:706828240078:android:db8f602eac63ec9b",
+        "android_client_info": {
+          "package_name": "com.iri.crisiseye"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "706828240078-1imfpfrc81278q20aue7k6q1qasgfk92.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCncTZfTatpkt9aiLiaXthS2v1kPOgEzU8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

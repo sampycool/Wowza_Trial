@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorTitleBar">#ad4561</color>
+
+    <color name="black_overlay">#66000000</color>
+    <color name="primary_material_dark_1">#931d1d</color>
+    <color name="controlButtonPressed">#80ff8400</color>
+    <color name="multiStateButtonPressed">#80ff8400</color>
+    <color name="multiStateButtonDisabled">#c1636363</color>
+
+
+    <color name="amber">#c44333</color>
+
+    <color name="RED">#FF0000</color>
+    <color name="GREEN">#008000</color>
+    <color name="white">#ffffff</color>
+    <color name="header9gray">#4c4c4c</color>
+    <color name="black">#000000</color>
+    <color name="edt_text_underline">#e8e8e8</color>
+    <color name="login_blue">#4686A1</color>
+    <color name="signup_gray">#b7b3b4</color>
+    <color name="insurance_yellow">#e5cf6c</color>
+    <color name="family_member_green">#9ebe59</color>
+    <color name="notification_green">#5cbe95</color>
+    <color name="myvisits_blue">#5884b3</color>
+    <color name="takephoto_pink">#cb6686</color>
+    <color name="earn_orange">#e68670</color>
+
+    <color name="symptom_color_selected">#003366</color>
+    <color name="reaction_color_selected">#003366</color>
+    <color name="static_text_color">#003366</color>
+    <color name="journal_entry_listitem_text_color">#003366</color>
+    <color name="note_text_disabled">#333333</color>
+    <color name="blue">#0000FF</color>
+    <color name="navy">#6699FF</color>
+    <color name="sky">#0099CC</color>
+    <color name="gray">#808080</color>
+    <color name="lightgray">#e7e7e7</color>
+    <color name="lightgray02">#bfbfbf</color>
+    <color name="dark">#000015</color>
+    <color name="lightgreen">#336666</color>
+    <color name="orrange">#e33d1b</color>
+    <color name="darkorrange">#cc2303</color>
+
+    <color name="event_color_01">#59dbe0</color>
+    <color name="event_color_02">#f57f68</color>
+    <color name="event_color_03">#87d288</color>
+    <color name="event_color_04">#f8b552</color>
+    <color name="toolbar">#efefef</color>
+    <color name="toolbar_text">#8f000000</color>
+    <color name="accent">#2789e4</color>
+</resources>

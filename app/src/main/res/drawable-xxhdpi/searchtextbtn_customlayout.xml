@@ -1,0 +1,43 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+ <item android:drawable="@color/lightgray" android:state_pressed="true"><layer-list>
+            <item android:drawable="@drawable/solid"/>
+            <item android:drawable="@drawable/shape"/>
+        </layer-list></item>
+    <item android:drawable="@color/BLUE"><layer-list>
+            <item android:drawable="@drawable/solid"/>
+            <item android:drawable="@drawable/shape"/>
+        </layer-list></item>
+ for other state
+    -->
+
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+           <!-- <corners android:bottomLeftRadius="0dip"
+	                 android:bottomRightRadius="0dip" 
+	                 android:topLeftRadius="0dip" 
+	                 android:topRightRadius="0dip"></corners> -->
+		    <corners 
+		        android:bottomLeftRadius="30dip" 
+		        android:topLeftRadius="30dip">		        
+		    </corners>
+	<solid android:color="#FFFFFF" /> 
+
+            <stroke android:width="0dip" android:color="#FFFFFF" />
+        </shape>
+        
+        </item>
+    <item>
+        <shape android:shape="rectangle">
+            <stroke android:width="0dip" android:color="#FFFFFF" />
+
+            <solid android:color="#FFFFFF"/> 
+
+           <corners 
+		        android:bottomLeftRadius="30dip" 
+		        android:topLeftRadius="30dip">		        
+		    </corners>
+        </shape></item>
+
+</selector>

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.iri.crisiseye">
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
+    <permission android:name="com.iri.crisiseye.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+    <uses-permission android:name="com.iri.crisiseye.permission.C2D_MESSAGE" />
+
+    <!-- This app has permission to register and receive data message. -->
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    <uses-feature
+        android:name="android.hardware.camera.any"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.flash"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.microphone"
+        android:required="false" />
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
+
+    <!--<android:name="com.iri.crisiseye.Controller">
+
+        android:theme="@style/AppTheme"
+        activity
+            android:name=".CameraActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:logo="@mipmap/ic_launcher"
+            android:label="@string/app_name_short"
+            android:screenOrientation="fullSensor"
+
+        -->
+
+    <application
+
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:supportsRtl="true"
+
+        android:theme="@style/MyCustomTheme">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyA4AgIXalJUvXyYiOh7uWXsJi45Gwc8Sug" />
+
+        <activity
+            android:name=".MainActivity"
+            android:label=""
+            >
+        </activity>
+        <activity
+            android:name=".CameraActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:logo="@mipmap/ic_launcher"
+            android:label="@string/app_name_short"
+            android:screenOrientation="fullSensor"/>
+        <activity
+            android:name=".mp4.MP4BroadcastActivity"
+
+            android:label="@string/mp4_broadcast_title" />
+        <activity
+            android:name=".mp4.MP4CaptureActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/mp4_capture_title"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name=".audio.AudioMeterActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/audio_meter_title"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name=".audio.BluetoothActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/audio_bluetooth_title"
+            android:screenOrientation="fullSensor" />
+        <!--
+            <activity
+            android:name="com.trial.cvdi.graphics.BitmapOverlayActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/bitmap_overlay_title"
+            android:screenOrientation="fullSensor" />
+        -->
+        <activity
+            android:name=".graphics.TextOverlayActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/text_overlay_title"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name=".ScreenshotActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/screenshot_title"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name=".FaceActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/camera_example_title"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".InfoActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/info_title"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name=".config.ConfigPrefsActivity"
+            android:icon="@drawable/ic_gear"
+            android:label="@string/configuration_settings_title"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/ConfigTheme" />
+        <activity android:name=".DummyActivity"
+            android:label="CrisisEye"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".LoginActivity"
+            android:label=""
+            >
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
+
+        <activity android:name=".UserRegistrationActivity"
+            android:label="">
+
+        </activity>
+
+        <service
+            android:name=".services.SensorService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <!--<receiver
+            android:name=".services.SensorRestarterBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:label="RestartServiceWhenStopped">
+            <intent-filter>
+                <action android:name="xyz" />
+                <action android:name="abc" />
+            </intent-filter>
+        </receiver>-->
+        <receiver
+            android:name=".services.PriorityChange_BroadcastReceiver"
+            android:enabled="true"
+            android:exported="false" />
+
+        <!--<receiver
+            android:name=".services.BatteryBroadcast"
+            android:enabled="true"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.BATTERY_CHANGED"/>
+            </intent-filter>
+        </receiver>-->
+
+
+        <activity android:name=".TestActivity">
+
+        </activity>
+
+
+        <service
+            android:name=".services.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".services.MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+
+
+
+    </application>
+
+</manifest>

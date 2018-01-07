@@ -1,0 +1,35 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+<!--     <item android:drawable="@color/lightgray" android:state_pressed="true"><layer-list>
+            <item android:drawable="@drawable/solid"/>
+            <item android:drawable="@drawable/shape"/>
+        </layer-list></item>
+    <item android:drawable="@color/BLUE"><layer-list>
+            <item android:drawable="@drawable/solid"/>
+            <item android:drawable="@drawable/shape"/>
+        </layer-list></item>
+ for other state -->
+ 
+ <item android:state_pressed="true" > 
+     <shape android:shape="rectangle" > 
+         <corners android:radius="3dip">
+             
+         </corners> 
+         <solid android:color="#555555"/> 
+         </shape>
+ </item> 
+ <item>
+     <shape android:shape="rectangle" > 
+        <!--  <gradient android:startColor="#0F590C" 
+                   android:endColor="#0DA108"
+                   android:angle="90">
+                 #0568A6 #008CE3 #73C0F0 
+         </gradient>  -->
+         <corners android:radius="3dip">
+             <solid android:color="#555555"/> 
+          
+         </corners>
+     </shape> 
+ </item>
+
+</selector>

@@ -1,0 +1,262 @@
+package com.iri.crisiseye;
+
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
+import android.telephony.TelephonyManager;
+//import android.util.Log;
+import android.widget.Toast;
+
+import com.iri.crisiseye.asynctask.PermissionResultCallback;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Created by tsarkar on 03/01/18.
+ */
+
+public class PermissionUtils {
+
+
+    Context context;
+    LoginActivity current_activity;
+
+    PermissionResultCallback permissionResultCallback;
+//    String deviceID = " xyz ";
+//    String imei = "abc";
+    ArrayList<String> permission_list=new ArrayList<>();
+    ArrayList<String> listPermissionsNeeded=new ArrayList<>();
+    String dialog_content="";
+    int req_code;
+
+    public PermissionUtils(Context context)
+    {
+        this.context=context;
+        this.current_activity= (LoginActivity) context;
+
+        permissionResultCallback= (PermissionResultCallback) context;
+    }
+
+
+    /**
+     * Check the API Level & Permission
+     *
+     * @param permissions
+     * @param dialog_content
+     * @param request_code
+     */
+
+    public void check_permission(ArrayList<String> permissions, String dialog_content, int request_code)
+    {
+        this.permission_list=permissions;
+        this.dialog_content=dialog_content;
+        this.req_code=request_code;
+
+        if(Build.VERSION.SDK_INT >= 23)
+        {
+            if (checkAndRequestPermissions(permissions, request_code))
+            {
+                permissionResultCallback.PermissionGranted(request_code);
+
+            }
+        }
+        else
+        {
+            permissionResultCallback.PermissionGranted(request_code);
+        }
+
+
+    }
+
+
+    /**
+     * Check and request the Permissions
+     *
+     * @param permissions
+     * @param request_code
+     * @return
+     */
+
+    private  boolean checkAndRequestPermissions(ArrayList<String> permissions,int request_code) {
+
+        if(permissions.size()>0)
+        {
+            listPermissionsNeeded = new ArrayList<>();
+
+            for(int i=0;i<permissions.size();i++)
+            {
+                int hasPermission = ContextCompat.checkSelfPermission(current_activity,permissions.get(i));
+
+                if (hasPermission != PackageManager.PERMISSION_GRANTED) {
+                    listPermissionsNeeded.add(permissions.get(i));
+                }
+
+            }
+            // now we request permissions after the
+            // request permissions checks that the permissions
+            // have not been granted
+
+            if (!listPermissionsNeeded.isEmpty())
+            {
+                ActivityCompat.requestPermissions(current_activity, listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]),request_code);
+
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     *
+     *
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults)
+    {
+        switch (requestCode)
+        {
+            case 1:
+                if(grantResults.length>0)
+                {
+                    Map<String, Integer> perms = new HashMap<>();
+
+
+                    for (int i = 0; i < permissions.length; i++)
+                    {
+                        System.out.println("> permission : "+permissions[i] +" > grantResults : "+
+                                String.valueOf(grantResults[i]));
+
+                        perms.put(permissions[i], grantResults[i]);
+                    }
+
+
+                    final ArrayList<String> pending_permissions=new ArrayList<>();
+
+                    if ( ContextCompat.checkSelfPermission(current_activity, android.Manifest.permission.READ_PHONE_STATE)
+                            != PackageManager.PERMISSION_GRANTED  ) {
+                        System.out.println("<< GRRRR >>" + "I am angry ");
+
+//                        ActivityCompat.requestPermissions(this, new String[] { android.Manifest.permission.READ_PHONE_STATE },
+//                                PERMISSION_ACCESS_READ_PHONE_STATE);
+
+                        TelephonyManager tel_mangr = (TelephonyManager) current_activity.getSystemService(Context.TELEPHONY_SERVICE) ;
+                        if(Build.VERSION.SDK_INT < 26) {
+                            System.out.println("device_id : "+"device_id >> ");
+                            String deviceID = tel_mangr.getDeviceId();
+                            System.out.println("device_id : "+ deviceID);
+                        }
+                        /*
+                        else {
+                            Log.w("imei","imei >> ");
+                            String imei = tel_mangr.getImei();
+                            Log.w("imei",imei);
+                        }
+                        */
+                    }
+                    else if ( ContextCompat.checkSelfPermission(current_activity, android.Manifest.permission.READ_PHONE_STATE)
+                            == PackageManager.PERMISSION_GRANTED  ) {
+                        System.out.println("<< GRRRR >>" + "I am happy ");
+
+//                        ActivityCompat.requestPermissions(this, new String[] { android.Manifest.permission.READ_PHONE_STATE },
+//                                PERMISSION_ACCESS_READ_PHONE_STATE);
+
+                        TelephonyManager tel_mangr = (TelephonyManager) current_activity.getSystemService(Context.TELEPHONY_SERVICE) ;
+                        if(Build.VERSION.SDK_INT < 26) {
+                            System.out.println("device_id : "+"device_id >> ");
+                            String deviceID = tel_mangr.getDeviceId();
+                            current_activity.setDeviceId(deviceID);
+                            System.out.println("device_id : "+ deviceID);
+                        }
+                        /*
+                        else {
+                            Log.w("imei","imei >> ");
+                            String imei = tel_mangr.getImei();
+                            Log.w("imei",imei);
+                        }
+                        */
+                    }
+
+
+                    for (int i = 0; i < listPermissionsNeeded.size(); i++)
+                    {
+                        if (perms.get(listPermissionsNeeded.get(i)) != PackageManager.PERMISSION_GRANTED)
+                        {
+                            if(ActivityCompat.shouldShowRequestPermissionRationale(current_activity,listPermissionsNeeded.get(i)))
+                                pending_permissions.add(listPermissionsNeeded.get(i));
+                            else
+                            {
+                                System.out.println("Go to settings"+" and enable permissions");
+                                permissionResultCallback.NeverAskAgain(req_code);
+                                Toast.makeText(current_activity, "Go to settings and enable permissions", Toast.LENGTH_LONG).show();
+                                return;
+                            }
+                        }
+
+                    }
+
+                    if(pending_permissions.size()>0)
+                    {
+                        showMessageOKCancel(dialog_content,
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                        switch (which) {
+                                            case DialogInterface.BUTTON_POSITIVE:
+                                                check_permission(permission_list,dialog_content,req_code);
+                                                break;
+                                            case DialogInterface.BUTTON_NEGATIVE:
+                                                System.out.println("permisson"+" not fully given");
+                                                if(permission_list.size()==pending_permissions.size())
+                                                    permissionResultCallback.PermissionDenied(req_code);
+                                                else
+                                                    permissionResultCallback.PartialPermissionGranted(req_code,pending_permissions);
+                                                break;
+                                        }
+
+
+                                    }
+                                });
+
+                    }
+                    else
+                    {
+
+                        System.out.println("all"+ " permissions granted");
+                        System.out.println("proceed"+" to next step");
+                        permissionResultCallback.PermissionGranted(req_code);
+
+                    }
+
+
+
+                }
+                break;
+        }
+    }
+
+
+    /**
+     * Explain why the app needs permissions
+     *
+     * @param message
+     * @param okListener
+     */
+    private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
+        new AlertDialog.Builder(current_activity)
+                .setMessage(message)
+                .setPositiveButton("Ok", okListener)
+                .setNegativeButton("Cancel", okListener)
+                .create()
+                .show();
+    }
+}

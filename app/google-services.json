@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "938816897191",
+    "firebase_url": "https://crisiseye.firebaseio.com",
+    "project_id": "crisiseye",
+    "storage_bucket": "crisiseye.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:938816897191:android:db8f602eac63ec9b",
+        "android_client_info": {
+          "package_name": "com.iri.crisiseye"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "938816897191-4qme796dpftg0q7pujson843avn2aq7t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFeqPk6kLvP2QPLL-d4yf8giTMuLAOT3Y"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
